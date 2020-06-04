@@ -2,7 +2,6 @@
 
 class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :set_confimed_param, only: [:create]
-  # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
@@ -12,17 +11,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    # if @validated == true
-    #   super do
-    #     resource.company = @company
-    #     resource.company_invitation = @invitation
-    #     resource.save
-    #   end
-    #   @invitation.update(validated_at: Time.now)
-    # else
-    #   super
-    # end
-    
+    super do
+      resource.password = "my_pass"
+      resource.password_confirmation = "my_pass"
+      resource.save
+    end
   end
 
   # GET /resource/edit
@@ -73,28 +66,4 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   protected 
 
-  def set_confimed_param
-  #   if params[:invit_token]
-  #     @invitation = CompanyInvitation.activ.unvalidated.where(token: params[:invit_token]).first
-  #     if @invitation.present? && @invitation.company.present?
-  #       @company = @invitation.company
-  #       # Secure the invitation if it's not from the boss
-  #       unless @company.boss == @invitation.sender
-  #         @company = nil
-  #       end
-  #     else
-  #       @company = nil
-  #     end
-  #   else
-  #     @invitation = nil
-  #     @company = nil
-  #   end
-  #   if @invitation.present? && @company.present?
-  #     @validated = true
-  #     params[:user][:confirmed_at] = Time.now
-  #   else
-  #     @validated = false
-  #     params[:user][:confirmed_at] = nil
-  #   end 
-   end
 end

@@ -11,46 +11,17 @@
           </div>
         </div>
         <div class="row margin">
-          <% if params[:email] && params[:token] %>
-            <div class="hidded">
-              <%= f.input :email, required: true, autofocus: true, input_html: { value: params[:email] }%>
-              <%= hidden_field_tag 'invit_token', params[:token] %>
-            </div>
-          <% else %>
-            <div class="input-field col s12 inline">
-              <div style="height: 50px; width: 50px;">
-                <i class="material-icons prefix pt-2" style="margin-top: 10px;">person_outline</i>
-              </div>
-              <div style="width: 100%;">
-                <%= f.label :email %>
-                <%= f.text_field :email, required: true %>
-              </div>
-            </div>
-          <% end %>
-          
-        </div>
-        <div class="row margin">
           <div class="input-field col s12 inline">
             <div style="height: 50px; width: 50px;">
-              <i class="material-icons prefix pt-2" style="margin-top: 10px;">lock_outline</i>
+              <i class="material-icons prefix pt-2" style="margin-top: 10px;">person_outline</i>
             </div>
             <div style="width: 100%;">
-                <%= f.label :password, 'Mot de passe' %>
-                <%= f.password_field :password, required: true %>
+              <%= f.label :email %>
+              <%= f.text_field :email, required: true %>
             </div>
           </div>
         </div>
-        <div class="row margin">
-          <div class="input-field col s12 inline">
-            <div style="height: 50px; width: 50px;">
-              <i class="material-icons prefix pt-2" style="margin-top: 10px;">lock_outline</i>
-            </div>
-            <div style="width: 100%;">
-                <%= f.label :password, 'Confirmation de mot de passe' %>
-                <%= f.password_field :password %>
-            </div>
-          </div>
-        </div>
+
         <div class="row">
           <div class="input-field col s12">
             <button type="submit" name="commit" value="c'est parti !" class="btn waves-effect waves-light border-round gradient-45deg-purple-deep-orange col s12" data-disable-with="c'est parti !">c'est parti !</button>
