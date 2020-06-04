@@ -30,6 +30,10 @@ class TasksController < ApplicationController
     end
   end
 
+  def upd_description
+    @task.update(description: params[:description])
+  end
+
   def sort 
     params[:task].each_with_index do |id, index|
       current_user.tasks.find(id).update(position: index + 1)
@@ -56,11 +60,10 @@ class TasksController < ApplicationController
   def update
     respond_to do |format|
       if @task.update(task_params)
-        format.html { redirect_to @task, notice: 'Task was successfully updated.' }
-        format.json { render :show, status: :ok, location: @task }
+        @message = "Tâche éditée !"
+        format.js {render 'tasks/js/update'}
       else
-        format.html { render :edit }
-        format.json { render json: @task.errors, status: :unprocessable_entity }
+        format.js {render 'layouts/error'}
       end
     end
   end

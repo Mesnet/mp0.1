@@ -1,6 +1,4 @@
 $('.material-tooltip').remove();
-$('.modal-side').modal("close")
-$('.modal-side').remove();
 $('#task_<%=@task.id%>').replaceWith("<%= j render partial: 'tasks/task', locals: {task: @task} %>");
 $('.tooltipped').tooltip();
 <%- if @message && @message.present? %>

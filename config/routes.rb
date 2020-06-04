@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     member do
       patch :show_info
       patch :upd_done
+      patch :upd_description
     end
     collection do
       patch :sort

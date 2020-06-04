@@ -1,17 +1,49 @@
 <!--  Contact sidebar -->
 <div class="contact-compose-sidebar modal-side" id="show_task<%= @task.id %>">
   <div class="card quill-wrapper">
-    <div class="card-content pt-0">
-      <div class="card-header pb-2">
-        <h3 class="card-title contact-title-label" id="new_partner_title">
+    <div class="card-content" style="padding-top: 15px">
+      <div class="card-header pb-2 inline">
+        <div class="linkable" style="padding-right: 10px;" id="edit_task_btn">
+          <i class="material-icons" style="font-size: 20px;">edit</i>
+        </div>
+        <div  style="width: 100%; max-width: 215px; overflow-wrap: break-word; word-wrap: break-word; font-size: 18px;" id="modal_title">
           <%= @task.title %>
-        </h3>
-        <div class="close close-icon modal-close">
+        </div>
+        <div class="close close-icon modal-close linkable">
           <i class="material-icons">close</i>
         </div>
       </div>
       <div class="divider"></div>
       <div id="task_info_body"> 
+        <div id="edit_task_area" class="hidded">
+          <%= simple_form_for @task, remote: true do |f| %>
+            <div class="col s12">
+              <%= f.input :title, label: "Titre", placeholder: "Mettre un homme en orbite", required: true %>
+            </div>
+            <div class="col s12">
+              <label for="task_date_<%= @task.id %>">Date</label>
+              <% if @task.date.present? %>
+                <% task_date = @task.date.to_date %>
+              <% else %>
+                <% task_date = nil %>
+              <% end %>
+              <input type="text" id="task_date_<%= @task.id %>" name='[task][date]' value="<%= task_date %>">
+            </div>
+            <div class="col s12">
+              <div style="width: 100%;">
+                <label for="description" class="label_input urgent">Description de la tâche</label>
+                <%= f.text_area :description, class: 'materialize-textarea text_input_box', style:"min-height: 30px; height: 30px; padding: 0px; margin-top: 10px;", placeholder: "Décrivez la mission en quelques lignes" %>
+              </div>
+            </div>
+            <div class="col s12 center mt-5">
+              <button type="submit" class="btn cyan darken-2">
+                Enregistrer
+              </button>
+            </div>
+          <% end %>
+
+
+        </div>
       </div>
     </div>
   </div>
@@ -19,4 +51,27 @@
 <script>
   $('#show_task<%= @task.id %>').modal(); 
   $('#show_task<%= @task.id %>').modal("open"); 
+  function theFunction () {
+    
+  }
+  $('#btn_upd_description<%=@task.id%>').click(function(){
+    description = $('#task_description<%=@task.id%>').val();
+    $(this).attr('href', '/tasks/<%=@task.id%>/upd_description?description='+description)
+  });
+  $('#task_date_<%= @task.id %>').datepicker({
+    container: 'body', //this will append to body
+    autoClose: true,
+    format: 'dd-mm-yyyy'
+  });
+  $('#edit_task_btn').click(function(){
+    if ($('#edit_task_area').is(':visible')) {
+      $('#modal_title').html('<%=@task.title%>');
+      $('#edit_task_area').slideUp()
+    } else {
+      $('#modal_title').html('Editer');
+      $('#edit_task_area').slideDown()
+      
+    }
+  });
+  
 </script>

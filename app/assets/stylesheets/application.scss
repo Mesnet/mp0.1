@@ -71,6 +71,15 @@ body{
   width: 100%;
 }
 
+.linkable{
+  color: #949494;
+  &:hover {
+    color: #949494;
+    opacity: 0.8 !important;
+    cursor: pointer !important;
+  }
+}
+
 
 .contact-compose-sidebar.modal-side{
   top: 0 !important;
