@@ -21,11 +21,16 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 # Additionals gems
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
+gem 'acts_as_list'
 gem 'devise'
 gem 'rails_admin'
 gem 'font-awesome-rails'
 gem 'simple_form'
 gem 'cocoon'
+gem 'rails-i18n'
+
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -1,43 +1,62 @@
-<p id="notice"><%= notice %></p>
+<div id="main">
+  <div class="col s12 center" style="padding: 0 20px;">
+    <div class="card">
+      <div class="app-wrapper">
+        <div class="row" style="text-align: left; padding: 10px;">
+          <%= simple_form_for @task, remote: true do |f| %>
+            <div class="col m8 s12">
+              <%= f.input :title, label: "Titre", placeholder: "Mettre un homme en orbite", required: true %>
+            </div>
+            <div class="col m2 s6">
+              <label for="task_date">Date</label>
+              <input type="text" id="task_date" name='[task][date]'>
+            </div>
+            <div class="col m2 s6 center">
+              <button type="submit" style="border: 0;">
+                <span class="material-icons" style="font-size: 30px; margin-top: 20px; text-align: center; color: #009588;">send </span>
+              </button>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col s12" style="padding: 0 20px;">
+    <div class="card card card-default scrollspy border-radius-6 fixed-width" style="overflow: scroll;">
+      <div>
+        <div class="card-content p-0">
+          <table id="task_area" class="display" style="width:100%">
+            <div>
+              <thead id="table_header">
+                <tr>
+                  <th></th>
+                  <th></th>
+                  <th>Titre</th>
+                  <th class="center"><i class="material-icons" style="font-size: 18px;">calendar_today</i></th>
+                  <th class="center"><i class="material-icons" style="font-size: 18px;">format_list_bulleted</i></th>
+                </tr>
+              </thead>
+              <tbody id="tasks">
+                <% @tasks.each do |task| %>
+                  <%= render "tasks/task", task: task %>
+                <% end %>
+              </tbody>
+              <a id="btn_show_task" href="javascript:void(0)" data-method="patch" data-remote="true" remote="true" class="hidded"></a>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  $('#sn_item1').addClass('active');
+  $('#tasks').sortable();
+  $('.tooltipped').tooltip();
+  $('#task_date').datepicker({
+    container: 'body', //this will append to body
+    autoClose: true,
+    format: 'dd-mm-yyyy'
+  });
+</script>
 
-<h1>Tasks</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Date</th>
-      <th>Done at</th>
-      <th>Done by</th>
-      <th>Parent</th>
-      <th>Activ</th>
-      <th>Position</th>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @tasks.each do |task| %>
-      <tr>
-        <td><%= task.title %></td>
-        <td><%= task.description %></td>
-        <td><%= task.date %></td>
-        <td><%= task.done_at %></td>
-        <td><%= task.done_by %></td>
-        <td><%= task.parent_id %></td>
-        <td><%= task.activ %></td>
-        <td><%= task.position %></td>
-        <td><%= task.user_id %></td>
-        <td><%= link_to 'Show', task %></td>
-        <td><%= link_to 'Edit', edit_task_path(task) %></td>
-        <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Task', new_task_path %>

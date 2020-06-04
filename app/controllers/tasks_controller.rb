@@ -1,38 +1,46 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :set_task, except: [:create, :index]
 
   # GET /tasks
   # GET /tasks.json
   def index
     @tasks = Task.all
+    @task = Task.new
   end
 
   # GET /tasks/1
   # GET /tasks/1.json
-  def show
+  def show_info
+    respond_to do |format|
+      format.js {render 'tasks/js/show_info'}
+    end
   end
 
-  # GET /tasks/new
-  def new
-    @task = Task.new
-  end
-
-  # GET /tasks/1/edit
-  def edit
+  def upd_done
+    if @task.done_at.present?
+      done_at = nil
+      done_by = nil
+    else
+      done_at = Time.zone.now
+      done_by = current_user.id
+    end
+    @task.update(done_at: done_at, done_by: done_by)
+    respond_to do |format|
+      format.js {render 'tasks/js/update'}
+    end
   end
 
   # POST /tasks
   # POST /tasks.json
   def create
     @task = Task.new(task_params)
-
+    @task.user = current_user
     respond_to do |format|
       if @task.save
-        format.html { redirect_to @task, notice: 'Task was successfully created.' }
-        format.json { render :show, status: :created, location: @task }
+        format.js {render 'tasks/js/create'}
       else
-        format.html { render :new }
-        format.json { render json: @task.errors, status: :unprocessable_entity }
+        @message = "La tâche n'a pas été sauvegardée"
+        format.js {render 'layouts/error'}
       end
     end
   end
@@ -64,7 +72,7 @@ class TasksController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_task
-      @task = Task.find(params[:id])
+      @task = current_user.tasks.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.

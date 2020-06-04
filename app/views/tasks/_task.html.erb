@@ -1,0 +1,29 @@
+<tr class="task_elm" id="task_iter<%=task.id%>">
+  <td>
+    &nbsp;
+  </td>
+  <td>
+    <a href="tasks/<%= task.id %>/upd_done" data-method="patch" data-remote="true">
+      <% if task.done_at.present? %>
+        <span class="material-icons tooltipped" data-tooltip="Tâche effectué le <%= task.done_at.strftime('%d %b à %H:%M')%>" data-position="right"> done </span>
+      <% else %>
+        <span class="material-icons"> check_box_outline_blank </span>
+      <% end %>
+    </a>
+  </td>
+  <td>
+    <a href="/tasks/<%=task.id%>/show_info" data-method="patch" data-remote="true">
+      <%= task.title %>
+    </a>
+  </td>
+  <td class="center">
+    <% if task.date.present? %>
+      <%= task.date.strftime('%d %b')%>
+    <% else %>
+      -
+    <% end %>
+  </td>
+  <td class="center">
+    -
+  </td>
+</tr>

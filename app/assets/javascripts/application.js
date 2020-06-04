@@ -12,6 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui/widget
+//= require jquery-ui/widgets/sortable
 //= require cocoon
 
 //= require_tree .

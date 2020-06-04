@@ -1,0 +1,4 @@
+<%- unless @message && @message.present? %>
+  <% @message = "Oups, something wrong !" %>
+<% end %>
+M.toast({html: "<%= @message %>"})

@@ -1,0 +1,22 @@
+<!--  Contact sidebar -->
+<div class="contact-compose-sidebar modal-side" id="show_task<%= @task.id %>">
+  <div class="card quill-wrapper">
+    <div class="card-content pt-0">
+      <div class="card-header pb-2">
+        <h3 class="card-title contact-title-label" id="new_partner_title">
+          <%= @task.title %>
+        </h3>
+        <div class="close close-icon modal-close">
+          <i class="material-icons">close</i>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <div id="task_info_body"> 
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  $('#show_task<%= @task.id %>').modal(); 
+  $('#show_task<%= @task.id %>').modal("open"); 
+</script>
