@@ -15,7 +15,7 @@
       </div>
       <div class="divider"></div>
       <div id="task_info_body"> 
-        <div id="edit_task_area" class="hidded">
+        <div id="edit_task_area" class="hidded" style="border-bottom: solid 1px #f5f5f5; padding-bottom: 10px;">
           <%= simple_form_for @task, remote: true do |f| %>
             <div class="col s12">
               <%= f.input :title, label: "Titre", placeholder: "Mettre un homme en orbite", required: true %>
@@ -41,8 +41,21 @@
               </button>
             </div>
           <% end %>
-
-
+        </div>
+        <div id="tasks_area" style="margin-top: 20px;">
+          Sous tâches :
+          <div class="inline">
+            <input type="text" name="" id="new_linked_task_title">
+            <a href="javascript:void(0)" id="btn_new_linked_task" data-method='patch' data-remote='true'>
+              <i class="material-icons">send</i>
+            </a>
+          </div>
+          
+          <ul class="collection <%= 'hidded' unless @task.tasks.activ.any? %>" id="linked_tasks_<%=@task.id%>">
+            <% @task.tasks.activ.each do |task| %>
+              <%= render 'tasks/linked_task', task: task %>
+            <% end %>
+          </ul>
         </div>
       </div>
     </div>
@@ -50,10 +63,7 @@
 </div>
 <script>
   $('#show_task<%= @task.id %>').modal(); 
-  $('#show_task<%= @task.id %>').modal("open"); 
-  function theFunction () {
-    
-  }
+  $('#show_task<%= @task.id %>').modal("open");
   $('#btn_upd_description<%=@task.id%>').click(function(){
     description = $('#task_description<%=@task.id%>').val();
     $(this).attr('href', '/tasks/<%=@task.id%>/upd_description?description='+description)
@@ -71,6 +81,14 @@
       $('#modal_title').html('Editer');
       $('#edit_task_area').slideDown()
       
+    }
+  });
+  $('#btn_new_linked_task').click(function(){
+    $(this).attr('href', "/tasks/<%= @task.id %>/create_linked?title=" + $('#new_linked_task_title').val())
+  });
+  $('#new_linked_task_title').keyup(function(e){
+    if(e.keyCode == 13){
+      $('#btn_new_linked_task').click();
     }
   });
   

@@ -4,3 +4,6 @@ $('.tooltipped').tooltip();
 <%- if @message && @message.present? %>
   M.toast({html: "<%= @message %>"})
 <% end %>
+<%- if @from_parent %>
+  $('#linked_task_<%=@task.id%>').replaceWith("<%= j render partial: 'tasks/linked_task', locals: {task: @task} %>");
+<% end %>

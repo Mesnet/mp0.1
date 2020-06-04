@@ -4,6 +4,7 @@ Rails.application.routes.draw do
       patch :show_info
       patch :upd_done
       patch :upd_description
+      patch :create_linked
     end
     collection do
       patch :sort

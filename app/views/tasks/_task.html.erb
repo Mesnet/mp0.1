@@ -24,7 +24,11 @@
     <% end %>
   </td>
   <td class="center">
-    -
+    <% if task.tasks.activ.any? %>
+      <%= task.tasks.activ.where.not(done_at: nil).count %>/<%= task.tasks.activ.count %>
+    <% else %>
+      -
+    <% end %>
   </td>
 </tr>
 

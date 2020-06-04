@@ -25,6 +25,10 @@ class TasksController < ApplicationController
       done_by = current_user.id
     end
     @task.update(done_at: done_at, done_by: done_by)
+    if params[:from_parent]
+      # This params is to indicate that we're into the parent show info
+      @from_parent = true
+    end
     respond_to do |format|
       format.js {render 'tasks/js/update'}
     end
@@ -52,6 +56,13 @@ class TasksController < ApplicationController
         @message = "La tâche n'a pas été sauvegardée"
         format.js {render 'layouts/error'}
       end
+    end
+  end
+
+  def create_linked
+    @new_task = Task.create(user: current_user, parent_id: @task.id, title: params[:title])
+    respond_to do |format|
+      format.js {render 'tasks/js/create'}
     end
   end
 

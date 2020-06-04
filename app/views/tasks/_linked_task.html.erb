@@ -1,0 +1,12 @@
+<li class="collection-item inline p-0" id="linked_task_<%=task.id%>">
+  <a href="/tasks/<%= task.id %>/upd_done?from_parent=true" style="padding: 3px 13px; padding-bottom: 0;" data-method='patch' data-remote='true'>
+    <% if task.done_at.present? %>
+      <i class="material-icons" style="margin-top: 3px;">check</i>
+    <% else %>
+      <i class="material-icons" style="margin-top: 3px;">check_box_outline_blank </i>
+    <% end %>
+  </a>
+  <div style="font-size: 18px; padding: 5px;">
+    <%= task.title %>
+  </div>
+</li>

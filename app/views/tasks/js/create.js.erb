@@ -1,4 +1,10 @@
-$('#tasks').append("<%= j render partial: 'tasks/task', locals: {task: @task} %>");
-$('#task_title').val('');
-$('#task_date').val('');
-M.toast({html: "La tâche a bien été créée"})
+<%- if @new_task %>
+  $('#new_linked_task_title').val('');
+  $('#linked_tasks_<%= @task.id %>').append("<%= j render partial: 'tasks/linked_task', locals: {task: @new_task} %>");
+  $('#linked_tasks_<%= @task.id %>').slideDown();
+<% else %>
+  $('#tasks').append("<%= j render partial: 'tasks/task', locals: {task: @task} %>");
+  $('#task_title').val('');
+  $('#task_date').val('');
+  M.toast({html: "La tâche a bien été créée"})
+<% end %>
