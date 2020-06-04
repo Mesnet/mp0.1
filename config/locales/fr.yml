@@ -1,0 +1,95 @@
+fr:
+  onboarding:
+    welcome: "Welcome dude"
+    onboarded: "Voilà, c'est terminé !"
+  
+  user:
+    form: 
+      title: "Votre profil"
+      label_name: "Prénom"
+      label_surname: "Nom"
+      label_work_role: "Votre poste"
+      label_phone: "Téléphone"
+      label_photo: "Photo de profile"
+
+
+  company: 
+    create: ""
+    update: "Les informations ont bien été édité"
+
+    form: 
+      title: "Votre entreprise"
+      label_logo: ""
+      label_name: "Nom de votre entreprise"
+
+  invitation: 
+    already_existing: "Cet utilisateur est déjà inscrit"
+    already_created: "Vous avez déjà invité cet utilisateur"
+    sended: "L'invitation à bien été envoyée !"
+    deleted: "L'invitation à bien été suprimée !"
+
+    form:
+      title: "Vos collaborateurs"
+      subtitle: "Vous pouvez inviter des personnes à rejoindre votre votre entreprise"
+      label_email: "Email de votre collaborateur"
+      restriction: "Vous devez être administrateur pour inviter de nouveaux collaborateurs"
+
+    list: 
+      title: "Vos invitées :"
+      validated: "Invitation validée le "
+      sended: "Invitation envoyé le "
+      delete_info_btn: Supprimer l'invitation
+      delete_message: "Attention, si vous supprimez l'invitation, cet utilisateur ne pourra plus rejoindre votre entreprise"
+
+  btn: 
+    edit: "Editer"
+    cancel: "Annuler"
+    next: "Suivant"
+    previous: "Précédent"
+    back: "Retour"
+    save: "Enregister"
+    over: "Terminer"
+
+
+
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        one: environ une heure
+        other: environ %{count} heures
+      about_x_months:
+        one: environ un mois
+        other: environ %{count} mois
+      about_x_years:
+        one: environ un an
+        other: environ %{count} ans
+      almost_x_years:
+        one: presqu'un an
+        other: presque %{count} ans
+      half_a_minute: une demi-minute
+      less_than_x_minutes:
+        zero: moins d'une minute
+        one: moins d'une minute
+        other: moins de %{count} minutes
+      less_than_x_seconds:
+        zero: moins d'une seconde
+        one: moins d'une seconde
+        other: moins de %{count} secondes
+      over_x_years:
+        one: plus d'un an
+        other: plus de %{count} ans
+      x_days:
+        one: 1 jour
+        other: "%{count} jours"
+      x_minutes:
+        one: 1 minute
+        other: "%{count} minutes"
+      x_months:
+        one: 1 mois
+        other: "%{count} mois"
+      x_years:
+        one: un an
+        other: "%{count} ans"
+      x_seconds:
+        one: 1 seconde
+        other: "%{count} secondes"

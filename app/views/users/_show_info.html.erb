@@ -1,0 +1,68 @@
+<!--  Contact sidebar -->
+<div class="contact-compose-sidebar modal-side">
+  <div class="card quill-wrapper">
+    <div class="card-content pt-0">
+      <div class="card-header display-flex pb-2">
+        <h3 class="card-title contact-title-label"><%= @user.pseudo %></h3>
+        <div class="close close-icon modal-close">
+          <i class="material-icons">close</i>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <!-- form start -->
+      <form class="edit-contact-item mb-5 mt-5">
+        <div class="row">
+          
+        
+          <div class="col s12" style="margin-bottom: 10px;">
+            <label for="phone" style="font-size: 15px;">Accréditation de l'utilisateur :</label>
+          </div>
+          <div class="col s12" style="margin-bottom: 20px;">
+            <%= render "user_admin_btn" %>
+          </div>
+
+          <div class="input-field col s12">
+            <a href="/" class="prefix">
+              <i class="material-icons" style="color: #0097a7;"> email </i>
+            </a>
+            <input id="email" type="email" disabled value="<%=@user.email%>">
+          </div>
+          <div class="input-field col s12">
+            <a href="/" class="prefix">
+              <i class="material-icons" style="color: #0097a7;"> call </i>
+            </a>
+            <input id="call" type="text" disabled value="99999">
+          </div>
+
+
+          <div class="input-field col s12">
+            <i class="material-icons prefix"> call </i>
+            <input id="phone" type="text" class="validate">
+            <label for="phone">Phone</label>
+          </div>
+          <div class="input-field col s12">
+            <i class="material-icons prefix"> business_center </i>
+            <input id="business" type="text" class="validate">
+            <label for="business">Job Title</label>
+          </div>
+          <div class="input-field col s12">
+            <i class="material-icons prefix"> note </i>
+            <input id="notes" type="text" class="validate">
+            <label for="notes">Notes</label>
+          </div>
+        </div>
+      </form>
+      <div class="card-action pl-0 pr-0 center">
+        <a href="/users/<%=@user.id%>" class="btn-flat" style="border: solid 1px #aaaaaa; color: #5f5f5f;">
+          <i class="material-icons left"> account_circle </i>
+          Voir profile complet
+        </a>
+      </div>
+      <!-- form start end-->
+    </div>
+  </div>
+</div>
+<script>
+  $('.contact-compose-sidebar').modal(); 
+  $('.contact-compose-sidebar').modal("open"); 
+</script>

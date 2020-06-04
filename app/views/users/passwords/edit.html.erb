@@ -1,0 +1,43 @@
+<%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+  <div class="container" style="width: 500px;">
+    <%= f.error_notification %>
+    <%= f.full_error :confirmation_token %>
+    <div class="col s12 m6 l4 card-panel border-radius-6 login-card bg-opacity-8">
+      <form class="login-form">
+        <div class="row">
+          <div class="input-field col s12 center">
+            <h5 class="ml-4">Changer mon mot de passe</h5>
+          </div>
+        </div>
+        <div class="row margin">
+          <div class="input-field col s12 inline">
+            <div style="height: 50px; width: 50px;">
+              <i class="material-icons prefix pt-2" style="margin-top: 10px;">lock_outline</i>
+            </div>
+            <div style="width: 100%;">
+                <%= f.label :password, 'Mot de passe' %>
+                <%= f.password_field :password, required: true %>
+            </div>
+          </div>
+        </div>
+        <div class="row margin">
+          <div class="input-field col s12 inline">
+            <div style="height: 50px; width: 50px;">
+              <i class="material-icons prefix pt-2" style="margin-top: 10px;">lock_outline</i>
+            </div>
+            <div style="width: 100%;">
+                <%= f.label :password, 'Confirmation de mot de passe' %>
+                <%= f.password_field :password %>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <button type="submit" name="commit" value="c'est parti !" class="btn waves-effect waves-light border-round gradient-45deg-purple-deep-orange col s12" data-disable-with="c'est parti !">renvoyer</button>
+          </div>
+        </div>
+        <%= render "users/shared/links" %>
+      </form>
+    </div>
+  </div>
+<% end %>

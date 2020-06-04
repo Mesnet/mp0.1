@@ -1,0 +1,4 @@
+$('#user_admin_btn').replaceWith("<%=  j render partial: 'users/user_admin_btn' %>");
+<%- if @message %>
+  M.toast({html: '<%= @message %>'})
+<% end %>

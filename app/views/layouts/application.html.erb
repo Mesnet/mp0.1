@@ -4,12 +4,21 @@
     <title>Mp01</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> 
   </head>
 
   <body>
+    <% flash.each do |message_type, message| %>
+      <%= javascript_tag "M.toast({html: '#{message}'})" %>
+    <% end %>
+    <% if user_signed_in? %>
+      <%= render 'layouts/nav/navin' %>
+      <%= render 'layouts/nav/sidenav' %>
+    <% else %>
+      <%= render 'layouts/nav/navout' %>
+    <% end %>
     <%= yield %>
   </body>
 </html>

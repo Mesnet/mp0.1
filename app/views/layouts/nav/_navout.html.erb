@@ -1,0 +1,38 @@
+
+<div class="inline">
+  <a href="/" class="button">
+    MY COMPANY LOGO
+  </a>
+  <div class="space"></div>
+  <div style="min-width: max-content; padding: 10px;">
+    <% unless @sign_in_page %>
+      <a href="/users/sign_in" class="btn white" style="color: #0097a7 !important;">
+        <span class="no_mobil">
+          <i class="material-icons left">person</i>
+          Connection
+        </span>
+        <span class="on_mobil">
+          <i class="material-icons">person</i>
+        </span>
+      </a>
+    <% end %>
+    <% unless @sign_up_page %>
+      <a href="/users/sign_up" class="btn white" style="color: #0097a7 !important;">
+        <span class="no_mobil">
+          <i class="material-icons left">person_add</i>
+          Inscription
+        </span>
+        <span class="on_mobil">
+          <i class="material-icons">person_add</i>
+        </span>
+      </a>
+    <% end %>
+  </div>
+
+  <script>
+    $('.modal').modal();
+  </script>
+</div>
+
+
+
