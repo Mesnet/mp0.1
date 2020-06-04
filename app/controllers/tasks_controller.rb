@@ -1,10 +1,10 @@
 class TasksController < ApplicationController
-  before_action :set_task, except: [:create, :index]
+  before_action :set_task, except: [:create, :index, :sort]
 
   # GET /tasks
   # GET /tasks.json
   def index
-    @tasks = Task.all
+    @tasks = current_user.tasks.activ.order(:position)
     @task = Task.new
   end
 
@@ -27,6 +27,12 @@ class TasksController < ApplicationController
     @task.update(done_at: done_at, done_by: done_by)
     respond_to do |format|
       format.js {render 'tasks/js/update'}
+    end
+  end
+
+  def sort 
+    params[:task].each_with_index do |id, index|
+      current_user.tasks.find(id).update(position: index + 1)
     end
   end
 

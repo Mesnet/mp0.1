@@ -4,6 +4,9 @@ Rails.application.routes.draw do
       patch :show_info
       patch :upd_done
     end
+    collection do
+      patch :sort
+    end
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 

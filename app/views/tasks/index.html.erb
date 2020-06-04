@@ -36,12 +36,12 @@
                   <th class="center"><i class="material-icons" style="font-size: 18px;">format_list_bulleted</i></th>
                 </tr>
               </thead>
-              <tbody id="tasks">
+              <tbody id="tasks" data-url="<%= sort_tasks_path%> ">
                 <% @tasks.each do |task| %>
                   <%= render "tasks/task", task: task %>
                 <% end %>
               </tbody>
-              <a id="btn_show_task" href="javascript:void(0)" data-method="patch" data-remote="true" remote="true" class="hidded"></a>
+
           </table>
         </div>
       </div>
@@ -50,7 +50,16 @@
 </div>
 <script>
   $('#sn_item1').addClass('active');
-  $('#tasks').sortable();
+  $('#tasks').sortable({
+    update: function(e, ui){
+      
+      $.ajax({
+        url: $(this).data('url'), 
+        type: 'PATCH',
+        data: $(this).sortable('serialize')
+      })
+    }
+  });
   $('.tooltipped').tooltip();
   $('#task_date').datepicker({
     container: 'body', //this will append to body

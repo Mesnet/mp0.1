@@ -1,7 +1,7 @@
 $('.material-tooltip').remove();
 $('.modal-side').modal("close")
 $('.modal-side').remove();
-$('#task_iter<%=@task.id%>').replaceWith("<%= j render partial: 'tasks/task', locals: {task: @task} %>");
+$('#task_<%=@task.id%>').replaceWith("<%= j render partial: 'tasks/task', locals: {task: @task} %>");
 $('.tooltipped').tooltip();
 <%- if @message && @message.present? %>
   M.toast({html: "<%= @message %>"})
